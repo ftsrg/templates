@@ -1,4 +1,4 @@
-public-appearance
+Public Appearance
 =================
 
 Public appearance guidelines and logos.
