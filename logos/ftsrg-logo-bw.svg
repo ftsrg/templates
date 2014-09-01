@@ -15,7 +15,7 @@
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="ftsrg-logo.svg"
+   sodipodi:docname="ftsrg-logo-bw.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    version="1.0">
   <defs
@@ -201,39 +201,6 @@
        r="116.14286"
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(1.7275022,-0.5344396,0.464029,1.4999102,-285.682,66.91404)" />
-    <radialGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient3223"
-       id="radialGradient3237"
-       cx="225.04393"
-       cy="170.02261"
-       fx="225.04393"
-       fy="170.02261"
-       r="116.14286"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.5145156,-1.525805,1.7134859,0.5778034,-182.07601,415.15612)" />
-    <radialGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient3223"
-       id="radialGradient3255"
-       cx="298.98782"
-       cy="200.2222"
-       fx="298.98782"
-       fy="200.2222"
-       r="116.14286"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.8034208,-1.6383468,1.3441473,0.6591497,-291.78904,511.40713)" />
-    <radialGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient3259"
-       id="radialGradient3287"
-       cx="265.5994"
-       cy="212.75415"
-       fx="265.5994"
-       fy="212.75415"
-       r="116.14286"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.3862926,-1.2084332,1.1089747,0.3544993,-96.258784,454.71186)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -248,10 +215,10 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1024"
-     inkscape:window-height="743"
-     inkscape:window-x="1635"
-     inkscape:window-y="272"
+     inkscape:window-width="1366"
+     inkscape:window-height="718"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      gridtolerance="10"
      inkscape:object-nodes="true"
      guidetolerance="10000"
@@ -264,7 +231,7 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-maximized="0">
+     inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
        id="grid2433"
@@ -293,7 +260,7 @@
      transform="translate(-52,-54.094482)">
     <path
        sodipodi:type="arc"
-       style="fill:url(#radialGradient3237);fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:7.21209002;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:7.21209001999999977;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="path2439"
        sodipodi:cx="254.64285"
        sodipodi:cy="227.71933"
@@ -303,7 +270,7 @@
        transform="matrix(0.6932803,0,0,0.6932803,203.98149,46.221157)" />
     <path
        sodipodi:type="arc"
-       style="fill:url(#radialGradient3255);fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:7.21209002;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:7.21209001999999977;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="path2447"
        sodipodi:cx="254.64285"
        sodipodi:cy="227.71933"
@@ -313,7 +280,7 @@
        transform="matrix(0.6932803,0,0,0.6932803,442.94076,46.221157)" />
     <path
        sodipodi:type="arc"
-       style="fill:url(#radialGradient3287);fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:7.21209002;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:7.21209001999999977;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="path2449"
        sodipodi:cx="254.64285"
        sodipodi:cy="227.71933"
@@ -323,7 +290,7 @@
        transform="matrix(0.6932803,0,0,0.6932803,683.46113,46.74152)" />
     <path
        sodipodi:type="arc"
-       style="fill:url(#radialGradient3229);fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:7.21209002;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:7.21209001999999977;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="path2451"
        sodipodi:cx="254.64285"
        sodipodi:cy="227.71933"
