@@ -1,0 +1,43 @@
+% Hazi Feladat / Meresi jegyzokony sablon BME MIT
+% Keszult: 2012.13.17
+% Leiras: Ebbe a fajlba kerul a lenyegi resz, a szoveg. A legfelsobb szintu felsorolas a section (chapter nem hasznalatos).
+
+\section{Bevezetés}
+\subsection{A feladat}
+Az alábbi programokkal dolgoztam:
+\begin{enumerate}
+\item Debian Linux 2.6.32-5-amd64
+\item Ez egy pelda felsorolas
+\end{enumerate}
+
+\section{Felhasználói dokumentáció}
+\subsection{Feladat 1}
+\subsubsection{Alfeladat 1}
+Az alábbi script segítségével minden fájlnak köszönök az aktuális mappában.
+\begin{lstlisting}[frame=single,float=!ht]
+ls | while read i; do echo Szia $i; done
+\end{lstlisting}
+\subsubsection{Alfeladat 2}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[height=2cm]{figures/BMElogo.png}
+\caption{A BME logója}
+\label{fig:BMElogo}
+\end{center}
+\end{figure}
+
+\section{Fejlesztői dokumentáció}
+\subsection{Feladat 1}
+Álljon itt egy lista vala.
+\begin{itemize}
+ \item \LaTeX
+ \item Foo, olvasható Lamport cikkéből. \cite{lamport94}
+\end{itemize}
+\begin{equation}
+x_1 = \frac{5 + \sqrt{25 - 4 \times 6}}{2} = 3
+\end{equation}
+ 
+
+\subsection{Feladat 2}
+Ahogyan azt a \ref{fig:BMElogo}. ábrán láttuk...
+
