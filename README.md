@@ -1,4 +1,4 @@
-Tempaltes
+Templates
 =========
 
 Templates, logos and public appearance guidelines.
