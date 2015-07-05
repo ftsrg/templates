@@ -1,0 +1,161 @@
+
+\RequirePackage{xpatch}
+
+\setbeamercolor{footline right}{bg=ftsrg@lightplum}
+
+\pgfdeclarehorizontalshading[footline.bg,footline right.bg]{ftsrg@footlineshade}{\paperheight}{%
+  color(0pt)=(footline.bg);
+  color(0.5\paperwidth)=(footline.bg);
+  color(\paperwidth)=(footline right.bg)}
+
+\defbeamertemplate*{frametitle}{ftsrg theme}[1][]{%
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  \@tempdima=\textwidth%
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+  \begin{beamercolorbox}[sep=0.24cm,#1,wd=\the\@tempdima]{frametitle}
+    \usebeamerfont{frametitle}%
+    \vbox{}\vskip-1ex%
+    \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+    \centering\strut\insertframetitle\strut\par%
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\strut\par}%
+      \fi
+    }%
+    \vskip-0.5ex%
+    \if@tempswa\else\vskip-.3cm\fi% set inside beamercolorbox... evil here...
+  \end{beamercolorbox}%
+}
+
+\defbeamertemplate*{frametitle}{ftsrg demo slide}[1][]{%
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  \@tempdima=\textwidth%
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+  \begin{beamercolorbox}[sep=0pt,wd=\@tempdima]{frametitle}%
+    \@tempdimb=\@tempdima
+    \advance\@tempdima by-2.4cm%
+    \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+    \begin{beamercolorbox}[sep=0.24cm,#1,wd=2.4cm]{frametitle}%
+      \usebeamerfont{frametitle}%
+      \vbox{}\vskip-1ex%
+      \centering\strut\clap{DEMO}%
+      \vskip-0.5ex%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[sep=0.24cm,#1,wd=\the\@tempdima]{demo frametitle}%
+      \usebeamerfont{frametitle}%
+      \vbox{}\vskip-1ex%
+      \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+      \strut\insertframetitle
+      \vskip-0.5ex%
+    \end{beamercolorbox}\par%
+    \vskip-\baselineskip%
+    {\usebeamercolor[fg]{demo frametitle separator} \rule{\@tempdimb}{0.5pt}}%
+    \if@tempswa\else\vskip-.3cm\fi% set inside beamercolorbox... evil here...
+  \end{beamercolorbox}%
+}
+
+\setbeamertemplate{frametitle}[ftsrg theme]
+
+\defbeamertemplate*{headline}{ftsrg theme}{%
+  \ifnum\insertpagenumber=1\relax
+  \usebeamertemplate{headline on initial slide}%
+  \else
+  \usebeamertemplate{headline on body slide}%
+  \fi
+}
+
+\defbeamertemplate*{headline on initial slide}{ftsrg theme}{%
+  \begin{beamercolorbox}[sep=0cm,wd=\the\paperwidth,ht=0.700cm]{headline}
+  \end{beamercolorbox}
+}
+
+\defbeamertemplate*{headline on body slide}{ftsrg theme}{%
+}
+
+\defbeamertemplate*{footline}{ftsrg theme}{%
+  \ifnum\insertpagenumber=1\relax
+  \usebeamertemplate{footline on initial slide}%
+  \else
+  \usebeamertemplate{footline on body slide}%
+  \fi
+}
+
+\defbeamertemplate*{footline on initial slide}{ftsrg theme}{%
+  \nointerlineskip
+  \begin{beamercolorbox}[sep=0cm,wd=\the\paperwidth]{footline}
+    \begin{columns}[c,totalwidth=\textwidth]
+      \begin{column}{0.6\textwidth}
+        \leftskip=0.1cm%
+        \normalbaselines
+        \usebeamerfont{department in foot}\insertuniversity\\\insertdepartment\par
+      \end{column}%
+      \begin{column}{0.4\textwidth}
+        \rightskip=0.06cm
+        \beamer@tempdim=0.7cm
+        \advance\beamer@tempdim by -0.03cm
+        \hfill\includegraphics[height=\beamer@tempdim]{bme_logo_large.png}
+        \vskip0.03cm\vbox{}
+      \end{column}
+    \end{columns}
+  \end{beamercolorbox}
+}
+
+\newsavebox\ftsrg@footline
+\newcommand*{\createFootlineBox}{
+}
+
+\defbeamertemplate*{footline on body slide}{ftsrg theme}{%
+  \nointerlineskip
+  \beamer@tempdim=0.534cm
+  \begin{pgfpicture}{0pt}{0pt}{\paperwidth}{\beamer@tempdim}
+    \usebeamercolor{footline right}
+    \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\beamer@tempdim}}
+    \pgfusepath{clip}
+    \pgftext[left,base]{\pgfuseshading{ftsrg@footlineshade}}
+  \end{pgfpicture}
+  \vskip-\beamer@tempdim
+  \advance\beamer@tempdim by -0.04cm
+  \hbox{}
+  \hskip0.03cm
+  \includegraphics[height=\beamer@tempdim]{bme_logo_small.png}
+  \hbox{}
+  \advance\beamer@tempdim by -0.04cm
+  \vskip-\beamer@tempdim
+  \hfill
+  \includegraphics[height=\beamer@tempdim]{ftsrg_logo_small.png}
+  \hspace*{0.03cm}\vskip0.04cm\vbox{}
+  \hbox{}
+}
+
+\setbeamertemplate{footline}[ftsrg theme]
+
+%% See \beamer@calculateheadfoot in beamerbaseframecomponents.sty
+\newcommand*{\ftsrg@recalculateheadfoot}{
+  \ifnum\insertpagenumber=2\relax
+  \setbox\beamer@tempbox=\hbox{{\beamer@typesetheadorfoot{footline}}}%
+  \global\footheight=\ht\beamer@tempbox%
+  \global\advance\footheight by \dp\beamer@tempbox%
+  \global\advance\footheight by 4pt%
+  \setbox\beamer@tempbox=\hbox{{\beamer@typesetheadorfoot{headline}}}%
+  \global\headheight=\ht\beamer@tempbox%
+  \global\headdp=\dp\beamer@tempbox%
+  \global\advance\headheight by\headdp%
+  \global\sidebarheight=\paperheight%
+  \global\advance\sidebarheight by-\headheight%
+  \global\advance\sidebarheight by\headdp%
+  \global\advance\sidebarheight by-\footheight%
+  \global\advance\sidebarheight by 4pt%
+  \global\footskip=\footheight%
+  \global\textheight=\paperheight%
+  \global\advance\textheight by-\footheight%
+  \global\advance\textheight by-\headheight%
+  \global\@colht\textheight%
+  \global\@colroom\textheight%
+  \global\vsize\textheight%
+  \fi
+}
+%% HIC SVNT DRACONES
+\xpretocmd{\beamer@frameslide}{\ftsrg@recalculateheadfoot}{}{}

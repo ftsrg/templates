@@ -1,0 +1,76 @@
+\ProvidesPackage{ftsrgpresentation}
+
+\RequirePackage{xparse}
+
+% Use the FTSRG Beamer theme
+\usetheme{ftsrg}
+
+%% Some useful pacakages
+\RequirePackage{amsmath,amsthm,mathtools,mleftright}
+\RequirePackage[normalem]{ulem}
+
+%% Some useful TikZ libraries
+\usetikzlibrary{arrows.meta,calc,shapes.callouts,shadows.blur,positioning}
+
+%% Conditional elements in TikZ drawings
+\tikzset{
+  invisible/.style={opacity=0,text opacity=0},
+  visible on/.style={alt=#1{}{invisible}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+  },
+}
+
+%% Mark coordinates for callouts
+\newcommand{\tikzmark}[2][]{\tikz[overlay,remember picture,#1] \node (#2) {};}
+\newcommand{\Tikzmark}[2][]{\tikzmark[baseline=-0.5ex,#1]{#2}}
+
+%% FTSRG color themed nodes
+\tikzset{
+  ftsrg bubble/.style={
+    align=center,
+    fill=ftsrg@lightplum, text=white, text width=4cm, rounded corners=6pt,
+    draw=ftsrg@plum, line width=2pt, blur shadow={shadow blur steps=5},
+  },
+  ftsrg callout/.style={
+    ftsrg bubble,anchor=pointer,
+    rectangle callout,callout pointer width=0.6cm,callout pointer shorten=-0.1cm
+  }
+}
+
+%% Callout overlays
+\NewDocumentCommand{\callout}{D<>{1-} O{} m D(){230:1cm} m}{%
+  \tikz[remember picture, overlay]\node[ftsrg callout,
+  #2,visible on=<#1>,
+  callout relative pointer={(#4)},
+  ]
+  at (#3) {#5};
+}
+
+%% Demo frames
+\newenvironment{demoframe}{%
+  \setbeamertemplate{frametitle}[ftsrg demo slide]%
+  \begin{frame}%
+}{\end{frame}}
+
+%% Metadata
+\newcommand*{\insertsupervisor}{}
+\newcommand*{\insertuniversity}{}
+\newcommand*{\insertdepartment}{}
+\newcommand*{\insertresearchgroup}{}
+\institute{\insertuniversity\\\insertresearchgroup}
+\newcommand*{\supervisor}[1]{
+  \renewcommand*{\insertsupervisor}{#1}
+}
+\newcommand*{\university}[1]{
+  \renewcommand*{\insertuniversity}{#1}
+}
+\newcommand*{\department}[1]{
+  \renewcommand*{\insertdepartment}{#1}
+}
+\newcommand*{\researchgroup}[1]{
+  \renewcommand*{\insertresearchgroup}{#1}
+}
+
+%% Fix for hyperref
+\hypersetup{unicode=true}

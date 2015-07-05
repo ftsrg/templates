@@ -1,0 +1,137 @@
+\documentclass[t,14pt,aspectratio=43]{beamer}
+
+\usepackage{ftsrgpresentation}
+
+\usepackage[english]{babel}
+
+\title{Title of the Presentation}
+\author{Előadó Elemér, Társszerző Tamás}
+\supervisor{Supervisor: Konzulens Károly}
+\university{Budapest University of Technology and Economics}
+\department{Department of Measurement and Information Systems}
+\researchgroup{Faul Tolerant Systems Research Group}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+  
+\begin{frame}{Example frame}
+  \begin{itemize}
+  \item Write your points here
+  \item You can use subitems
+    \begin{itemize}
+    \item And sub-subitems
+      \begin{itemize}
+      \item But please don't go any lower
+      \end{itemize}
+    \end{itemize}
+  \item You must compile this presenation with Lua\LaTeX\\
+    and have \emph{Calibri}, \emph{Cambria} and \emph{Cambria Math}
+    installed on you computer as OpenType fonts
+  \item The attached \texttt{.latexmkrc} helps you
+    \begin{itemize}
+    \item Just run \texttt{latexmk presentation}
+    \end{itemize}
+  \item<2-> Animations are also supported\tikzmark{bubblehere}
+  \end{itemize}
+  \callout<3>[text width=5cm]{bubblehere}{Use \texttt{\textbackslash
+      tikzmark} and \texttt{\textbackslash callout} to place ``speech
+    bubbles''}
+\end{frame}
+
+\begin{frame}[c]{Figures}
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{figures/BMElogo.png}
+    \caption{Write your caption here}
+  \end{figure}
+\end{frame}
+
+\begin{frame}[c]{Vector graphics}
+  \centering
+  \begin{tikzpicture}[
+    remember picture,
+    workflow item/.style={ftsrg bubble, minimum height=1.5cm,
+      text width=3cm},
+    workflow subitem/.style={workflow item, minimum height=1.05cm,
+      text width=2.1cm, font=\footnotesize, fill=orange},
+    workflow arrow tip/.tip={Stealth[scale=1.2]},
+    workflow arrow/.style={ultra thick,-{workflow arrow tip},font=\footnotesize},
+    workflow bidirectional arrow/.style={workflow arrow,
+      {workflow arrow tip}-{workflow arrow tip}},
+    ]
+    \node[workflow item, minimum height=2.2cm, text width=4.4cm] (tikz) {%
+      With Ti\emph{k}Z commands };
+    \node[workflow item, left=of tikz] (figures) { Figures };
+    \node[workflow item, above=of figures, alt=<2->{fill=orange}{}]
+    (draw) { Draw };
+    \node[workflow item, below=of tikz] (anim) { \only<2->{Animations} };
+    \draw[workflow arrow] (draw) edge (figures);
+    \draw[workflow arrow] (figures) edge (tikz);
+    \draw[workflow bidirectional  arrow,transform canvas={xshift=-0.5cm}]
+    (tikz) edge (anim);
+    \draw[workflow bidirectional  arrow,transform canvas={xshift=0.5cm}]
+    (tikz) edge (anim);
+    \draw[workflow arrow,dashed,visible on=<2->]
+    (figures) |- node[at end,above,anchor=south east,xshift=-0.6cm]
+    {You can also add} (anim);
+  \end{tikzpicture}
+  \callout<2->[xshift=-1cm]{draw.east}(180:1.5cm){%
+    You can place callouts over figures, too}
+\end{frame}
+
+\begin{demoframe}{Show your software}
+  Use the \texttt{demoframe} environment to create this slide
+\end{demoframe}
+
+\begin{frame}{Equations}
+  \begin{align*}
+    i \hbar \frac{\partial}{\partial t} \Psi (\mathbf{r}, t)
+    &= \hat{H} \Psi (\mathbf{r}, t) \\
+    &= \mleft[ \frac{- \hbar^2}{2 \mu} \nabla^2 + V(\mathbf{r}, t)
+      \mright] \Psi (\mathbf{r}, t)
+  \end{align*}
+
+  From
+  \href{https://en.wikipedia.org/wiki/Schr\%C3\%B6dinger_equation}{%
+  Wikipedia, the free encyclopedia}
+\end{frame}
+
+\begin{frame}{Columns and blocks}
+  \begin{columns}
+    \begin{column}{0.49\linewidth}
+      \begin{block}{Block with a title}
+        This is a block.\strut
+      \end{block}
+
+      \begin{theorem}
+        $\forall b \in \textit{Blocks} : b$ is a cool block
+      \end{theorem}
+    \end{column}
+
+    \begin{column}{0.49\linewidth}
+      \begin{alertblock}{Alerted block}
+        Achtung! \alert{Achtung!}\strut
+      \end{alertblock}
+
+      \begin{exampleblock}{Example block}
+        This is an example of an example block.\\
+        A meta-exaple block.
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+
+  \vspace{1ex}
+
+  \begin{block}{}
+    A block which spans two columns and has no title.
+  \end{block}
+\end{frame}
+
+\begin{frame}[c]{}
+  \centering {\LARGE Have fun with Beamer!}
+\end{frame}
+
+\end{document}
