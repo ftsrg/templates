@@ -10,7 +10,7 @@
 \RequirePackage[normalem]{ulem}
 
 %% Some useful TikZ libraries
-\usetikzlibrary{arrows.meta,calc,shapes.callouts,shadows.blur,positioning}
+\usetikzlibrary{arrows.meta,calc,shapes.callouts,shadows.blur,positioning,shapes.geometric,fit}
 
 %% Conditional elements in TikZ drawings
 \tikzset{
@@ -29,8 +29,8 @@
 \tikzset{
   ftsrg bubble/.style={
     align=center,
-    fill=ftsrg@lightplum, text=white, text width=4cm, rounded corners=6pt,
-    draw=ftsrg@plum, line width=2pt, blur shadow={shadow blur steps=5},
+    fill=ftsrg@lightblue, text=white, text width=4cm, rounded corners=6pt,
+    draw=ftsrg@blue, line width=2pt, blur shadow={shadow blur steps=10},
   },
   ftsrg callout/.style={
     ftsrg bubble,anchor=pointer,
