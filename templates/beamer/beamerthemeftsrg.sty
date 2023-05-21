@@ -1,9 +1,10 @@
 \mode<presentation>
 
 \RequirePackage{tikz}
-\RequirePackage[default]{opensans}
+\RequirePackage[defaultsans]{opensans}
 
 \DeclareRobustCommand\ebseries{\fontseries{eb}\selectfont}
+\DeclareRobustCommand\sbseries{\fontseries{sb}\selectfont}
 \DeclareRobustCommand\sbseries{\fontseries{sb}\selectfont}
 \DeclareRobustCommand\ltseries{\fontseries{l}\selectfont}
 \DeclareRobustCommand\clseries{\fontseries{cl}\selectfont}
@@ -13,46 +14,59 @@
 \DeclareTextFontCommand{\textlt}{\ltseries}
 \DeclareTextFontCommand{\textcl}{\clseries}
 
+\setbeamerfont{title}{size=\Huge}
+
 \pgfdeclareimage[width=\paperwidth,height=\paperheight]{mybackground}{figures/bg.png}
 \setbeamertemplate{title page}{
-	
+        
 	\begin{picture}(0,0)
 		
-		\put(-28,-250){%
+		\put(-1cm,-\paperheight+0.7cm){%
 			\pgfuseimage{mybackground}
 		}
 		
-		\put(0,-185){%
+		\put(0,-160){%
 			\begin{minipage}[b][45mm][t]{10cm}
 				\color{white} \usebeamerfont{title}{\ebseries \raggedright\inserttitle\par}
 			\end{minipage}
 		}
 		
-		\put(0,-250){%
+		\put(0,-225){%
 			\begin{minipage}[b][45mm][t]{10cm}
 				\color{white} \usebeamerfont{author}{\insertauthor\\\insertsupervisor\par}
 			\end{minipage}
 		}
 		
-		\put(0,-235){%
+		\put(0,-225){%
 			\begin{minipage}[b][22mm][t]{10cm}
 				\color{white} \usebeamerfont{date}{\insertdate\par}
 			\end{minipage}
 		}
-		\put(-10,-260){%
-			\begin{minipage}[b][22mm][t]{10cm}
-				\includegraphics[height=2cm,width=4cm,keepaspectratio]{figures/bme.jpeg}
+		\put(-20,-255){%
+			\begin{minipage}[b][22mm][t]{4cm}
+				\includegraphics[height=1cm,keepaspectratio]{figures/BME.pdf}
 			\end{minipage}
 		}
-		\put(100,-270){%
-			\begin{minipage}[b][22mm][t]{10cm}
-			\color{black} \usebeamerfont{institute}{\insertuniversity\\\insertdepartment\\\insertresearchgroup}
+            \put(-20pt + 4cm, -255pt + 0.25cm){%
+			\begin{minipage}[b][22mm][t]{2cm}
+				\includegraphics[height=1.5cm,keepaspectratio]{figures/vik.pdf}
+			\end{minipage}
+		}
+            \put(-20pt + 4cm + 2cm,-255pt + 0.25cm){%
+			\begin{minipage}[b][22mm][t]{2cm}
+				\includegraphics[height=1.5cm,keepaspectratio]{figures/mit.pdf}
 			\end{minipage}
 		}
 		
-		\put(270,-245){%
+		
+            \put(280,-255 ){%
+			\begin{minipage}[b][22mm][t]{2cm}
+				\includegraphics[height=1cm,keepaspectratio]{figures/FTSRG.pdf}
+			\end{minipage}
+		}
+		\put(280pt + 2cm,-260){%
 			\begin{minipage}[b][22mm][t]{10cm}
-				\includegraphics[height=1in,width=1.76in,keepaspectratio]{figures/ftsrg.png}
+			\color{black} \usebeamerfont{institute}{\ebseries \small \fontshape{sl}\selectfont Critical Systems\\Research Group}
 			\end{minipage}
 		}
 		
@@ -81,20 +95,21 @@
 	\end{beamercolorbox}%
 }
 
+
 \defbeamertemplate*{footline}{} {
 	\leavevmode
 	\begin{tikzpicture}
-		\node[rectangle,fill=gray,minimum height=0.7cm,minimum width=10.85cm,align=left] (bar) {};
-		\node [anchor=west,align=left,xshift=-5cm] (title) {\inserttitle};
+		\node[rectangle,fill=gray,minimum height=0.7cm,minimum width=14cm,align=left] (bar) {};
+		\node [anchor=west,align=left,xshift=-7cm] (title) {\inserttitle};
 		
 		\node [shading = axis,trapezium,trapezium left angle = 90,
 		trapezium right angle = 105,
-		left color=gray, right color=gray!30!gray,shading angle=135,minimum width=0.888cm,xshift=5.6cm] (box1) {};
-		\node[left=0cm of box1]{\insertpagenumber};
+		left color=gray, right color=gray!30!gray,shading angle=135,minimum width=0.888cm,xshift=7.28cm] (box1) {};
+		\node[left=6cm of box1]{\insertpagenumber};
 		
 		\node [shading = axis,trapezium,trapezium left angle = 75,
 		trapezium right angle = 90,
-		left color=left, right color=left!30!ftsrg2,shading angle=135,minimum width=1.3cm,xshift=6.82cm] (box) {\includegraphics[height=0.5cm]{figures/ftsrg_white.png}};
+		left color=left, right color=left!30!ftsrg2,shading angle=135,minimum width=1.3cm,xshift=8.5cm] (box) {\includegraphics[height=0.45cm]{figures/ftsrg_white.png}};
 		
 	\end{tikzpicture}
 }
