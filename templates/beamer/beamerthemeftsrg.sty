@@ -1,14 +1,135 @@
 \mode<presentation>
 
 \RequirePackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\RequirePackage[default]{opensans}
+
+\DeclareRobustCommand\ebseries{\fontseries{eb}\selectfont}
+\DeclareRobustCommand\sbseries{\fontseries{sb}\selectfont}
+\DeclareRobustCommand\ltseries{\fontseries{l}\selectfont}
+\DeclareRobustCommand\clseries{\fontseries{cl}\selectfont}
+
+\DeclareTextFontCommand{\texteb}{\ebseries}
+\DeclareTextFontCommand{\textsb}{\sbseries}
+\DeclareTextFontCommand{\textlt}{\ltseries}
+\DeclareTextFontCommand{\textcl}{\clseries}
+
+\setbeamerfont{title}{size=\Huge}
+
+\pgfdeclareimage[width=\paperwidth,height=\paperheight]{mybackground}{figures/bg.png}
+\setbeamertemplate{title page}{
+        
+	\begin{picture}(0,0)
+		
+		\put(-1cm,-\paperheight+0.7cm){%
+			\pgfuseimage{mybackground}
+		}
+
+            \put(9cm,0){%
+			\begin{minipage}[t]{5.5cm}
+				\usebeamerfont{author}{\flushright\insertsubtitle\par}
+			\end{minipage}
+		}
+		
+		\put(0,-160){%
+			\begin{minipage}[b][45mm][t]{10cm}
+				\color{white} \usebeamerfont{title}{\ebseries \raggedright\inserttitle\par}
+			\end{minipage}
+		}
+		
+		\put(0,-225){%
+			\begin{minipage}[b][45mm][t]{10cm}
+				\color{white} \usebeamerfont{author}{\insertauthor\\\insertsupervisor\par}
+			\end{minipage}
+		}
+		
+		\put(0,-225){%
+			\begin{minipage}[b][22mm][t]{10cm}
+				\color{white} \usebeamerfont{date}{\insertdate\par}
+			\end{minipage}
+		}
+		\put(-20,-255){%
+			\begin{minipage}[b][22mm][t]{4cm}
+				\includegraphics[height=1cm,keepaspectratio]{figures/BME.pdf}
+			\end{minipage}
+		}
+            \put(-20pt + 4cm, -255pt + 0.25cm){%
+			\begin{minipage}[b][22mm][t]{2cm}
+				\includegraphics[height=1.5cm,keepaspectratio]{figures/vik.pdf}
+			\end{minipage}
+		}
+            \put(-20pt + 4cm + 2cm,-255pt + 0.25cm){%
+			\begin{minipage}[b][22mm][t]{2cm}
+				\includegraphics[height=1.5cm,keepaspectratio]{figures/mit.pdf}
+			\end{minipage}
+		}
+		
+		
+            \put(280,-255 ){%
+			\begin{minipage}[b][22mm][t]{2cm}
+				\includegraphics[height=1cm,keepaspectratio]{figures/FTSRG.pdf}
+			\end{minipage}
+		}
+		\put(280pt + 2cm,-260){%
+			\begin{minipage}[b][22mm][t]{10cm}
+			\color{black} {\fontshape{it} \fontseries{b} \selectfont Critical Systems\\Research Group}
+			\end{minipage}
+		}
+		
+	\end{picture}
+	
+}
+
+\setbeamertemplate{frametitle}{%
+	\ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+	\@tempdima=\textwidth%
+	\advance\@tempdima by\beamer@leftmargin%
+	\advance\@tempdima by\beamer@rightmargin%
+	\begin{beamercolorbox}[sep=0.25cm,left,wd=\the\@tempdima]{frametitle}
+		\usebeamerfont{frametitle}%
+		\vbox{}\vskip-0.25ex%
+		\if@tempswa\else\csname beamer@fteleft\endcsname\fi%
+		\strut\texteb\insertframetitle\strut\par%
+		{%
+			\ifx\insertframesubtitle\@empty%
+			\else%
+			{\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\strut\par}%
+			\fi
+		}%
+		\vskip-1ex%
+		\if@tempswa\else\vskip-.3cm\fi% set inside beamercolorbox... evil here...
+	\end{beamercolorbox}%
+}
+
+
+\defbeamertemplate*{footline}{} {
+	\leavevmode
+	\begin{tikzpicture}
+		\node[rectangle,fill=gray,minimum height=0.7cm,minimum width=14cm,align=left] (bar) {};
+		\node [anchor=west,align=left,xshift=-7cm] (title) {\fontshape{n}\fontseries{l}\selectfont\inserttitle};
+		
+		\node [shading = axis,trapezium,trapezium left angle = 90,
+		trapezium right angle = 105,
+		left color=gray, right color=gray!30!gray,shading angle=135,minimum width=0.888cm,xshift=7.28cm] (box1) {};
+		\node[left=6cm of box1]{\fontshape{n}\fontseries{l}\selectfont\insertpagenumber};
+		\node[left=-0.5cm of box1]{
+			\begin{minipage}[t]{5.5cm}%
+				\usebeamerfont{author}{\flushright\insertsubtitle\par}
+			\end{minipage}%
+            };
+		
+		\node [shading = axis,trapezium,trapezium left angle = 75,
+		trapezium right angle = 90,
+		left color=left, right color=left!30!ftsrg2,shading angle=135,minimum width=1.3cm,xshift=8.5cm] (box) {\includegraphics[height=0.45cm]{figures/ftsrg_white.pdf}};
+		
+	\end{tikzpicture}
+}
 
 \usecolortheme{ftsrg}
-\usefonttheme{ftsrg}
-\useinnertheme{ftsrg}
-\useoutertheme{ftsrg}
+\setbeamerfont{institute}{size*={7}{8}}
 
 \setbeamertemplate{navigation symbols}{}
-
-\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{blocks}[rounded]
 
 \mode<all>

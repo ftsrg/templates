@@ -1,21 +1,24 @@
-\documentclass[t,14pt,aspectratio=43]{beamer}
-
+\documentclass[t,aspectratio=169]{beamer}
 \usepackage{ftsrgpresentation}
 
 \usepackage[english]{babel}
 
 \title{Title of the Presentation}
+\subtitle{Venue'YY}
 \author{Előadó Elemér, Társszerző Tamás}
 \supervisor{Supervisor: Konzulens Károly}
 \university{Budapest University of Technology and Economics}
 \department{Department of Measurement and Information Systems}
-\researchgroup{Fault Tolerant Systems Research Group}
+\researchgroup{ftsrg Research Group}
 
 \begin{document}
-
-\begin{frame}
-  \titlepage
-\end{frame}
+	{
+		\setbeamertemplate{footline}{} 
+		\begin{frame}
+			\titlepage
+		\end{frame}
+	}
+	\addtocounter{framenumber}{-1}
   
 \begin{frame}{Example frame}
   \begin{itemize}
@@ -44,7 +47,7 @@
 \begin{frame}[c]{Figures}
   \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{figures/BMElogo.png}
+    \includegraphics[width=\textwidth]{figures/BME.pdf}
     \caption{Write your caption here}
   \end{figure}
 \end{frame}
