@@ -29,22 +29,36 @@
 \tikzset{
   ftsrg bubble/.style={
     align=center,
-    fill=ftsrg@lightblue, text=white, text width=4cm, rounded corners=6pt,
-    draw=ftsrg@blue, line width=2pt, blur shadow={shadow blur steps=10},
+    fill=ftsrg@AccentBlue, text=white, text width=4cm, rounded corners=6pt,
+    draw=ftsrg@AccentBlue!80!ftsrg@Black, line width=2pt, blur shadow={shadow blur steps=10},
   },
   ftsrg callout/.style={
     ftsrg bubble,anchor=pointer,
     rectangle callout,callout pointer width=0.6cm,callout pointer shorten=-0.1cm
-  }
+  },
 }
 
 %% Callout overlays
 \NewDocumentCommand{\callout}{D<>{1-} O{} m D(){230:1cm} m}{%
-  \tikz[remember picture, overlay]\node[ftsrg callout,
-  #2,visible on=<#1>,
-  callout relative pointer={(#4)},
-  ]
-  at (#3) {#5};
+    \onslide<#1>{
+      \tikz[remember picture, overlay]\node[ftsrg callout,
+      #2,
+      callout relative pointer={(#4)},
+      ]
+      at (#3) {#5};
+  }
+}
+%% Callout overlays
+\NewDocumentCommand{\accentcallout}{D<>{1-} O{} m D(){230:1cm} m O{AccentBlue}}{%
+  \onslide<#1>{
+    \tikz[remember picture, overlay]\node[ftsrg callout,
+    fill=ftsrg@#6,
+    draw=ftsrg@#6!80!black,
+    #2,
+    callout relative pointer={(#4)},
+    ]
+    at (#3) {#5};
+  }
 }
 
 %% Demo frames
@@ -53,23 +67,21 @@
   \begin{frame}%
 }{\end{frame}}
 
+%% Centering
+\newenvironment{centercolumn}[1][0.3]{%
+\begin{columns}\hfill\begin{column}{#1\textwidth}%
+}{\end{column}\hfill\end{columns}}
+
+%% Coloured blocks
+\newenvironment{coloredblock}[3]{%
+  \setbeamercolor{block title}{#2}
+  \setbeamercolor{block body}{#3}
+  \begin{block}{#1}}{\end{block}}
+  
 %% Metadata
 \newcommand*{\insertsupervisor}{}
-\newcommand*{\insertuniversity}{}
-\newcommand*{\insertdepartment}{}
-\newcommand*{\insertresearchgroup}{}
-\institute{\insertuniversity\\\insertresearchgroup}
 \newcommand*{\supervisor}[1]{
   \renewcommand*{\insertsupervisor}{#1}
-}
-\newcommand*{\university}[1]{
-  \renewcommand*{\insertuniversity}{#1}
-}
-\newcommand*{\department}[1]{
-  \renewcommand*{\insertdepartment}{#1}
-}
-\newcommand*{\researchgroup}[1]{
-  \renewcommand*{\insertresearchgroup}{#1}
 }
 
 %% Fix for hyperref
