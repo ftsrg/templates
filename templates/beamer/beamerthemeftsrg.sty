@@ -1,9 +1,8 @@
 \mode<presentation>
 
 \RequirePackage{tikz}
-\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\RequirePackage[default]{opensans}
+\RequirePackage[default,defaultsans]{opensans}
 
 \DeclareRobustCommand\ebseries{\fontseries{eb}\selectfont}
 \DeclareRobustCommand\sbseries{\fontseries{sb}\selectfont}
@@ -66,14 +65,14 @@
 		}
 		
 		
-            \put(280,-255 ){%
+            \put(275,-255 ){%
 			\begin{minipage}[b][22mm][t]{2cm}
 				\includegraphics[height=1cm,keepaspectratio]{figures/FTSRG.pdf}
 			\end{minipage}
 		}
-		\put(280pt + 2cm,-260){%
+		\put(275pt + 2cm,-260){%
 			\begin{minipage}[b][22mm][t]{10cm}
-			\color{black} {\fontshape{it} \fontseries{b} \selectfont Critical Systems\\Research Group}
+			\color{black} {\fontshape{it}\fontseries{b}\selectfont Critical Systems\\Research Group}
 			\end{minipage}
 		}
 		
@@ -106,13 +105,13 @@
 \defbeamertemplate*{footline}{} {
 	\leavevmode
 	\begin{tikzpicture}
-		\node[rectangle,fill=gray,minimum height=0.7cm,minimum width=14cm,align=left] (bar) {};
+		\node[rectangle,fill=ftsrg@Gray,minimum height=0.7cm,minimum width=14cm,align=left] (bar) {};
 		\node [anchor=west,align=left,xshift=-7cm] (title) {\fontshape{n}\fontseries{l}\selectfont\inserttitle};
 		
 		\node [shading = axis,trapezium,trapezium left angle = 90,
 		trapezium right angle = 105,
-		left color=gray, right color=gray!30!gray,shading angle=135,minimum width=0.888cm,xshift=7.28cm] (box1) {};
-		\node[left=6cm of box1]{\fontshape{n}\fontseries{l}\selectfont\insertpagenumber};
+		left color=ftsrg@Gray, right color=ftsrg@Gray,shading angle=135,minimum width=0.888cm,xshift=7.28cm] (box1) {};
+		\node[left=6cm of box1]{\fontshape{n}\fontseries{l}\selectfont\insertframenumber};
 		\node[left=-0.5cm of box1]{
 			\begin{minipage}[t]{5.5cm}%
 				\usebeamerfont{author}{\flushright\insertsubtitle\par}
@@ -121,7 +120,7 @@
 		
 		\node [shading = axis,trapezium,trapezium left angle = 75,
 		trapezium right angle = 90,
-		left color=left, right color=left!30!ftsrg2,shading angle=135,minimum width=1.3cm,xshift=8.5cm] (box) {\includegraphics[height=0.45cm]{figures/ftsrg_white.pdf}};
+		left color=ftsrg@AccentBlue, right color=ftsrg@AccentPurple,shading angle=45,minimum height=0.7cm,minimum width=1.3cm,xshift=8.5cm] (box) {\includegraphics[height=0.45cm]{figures/ftsrg_white.pdf}};
 		
 	\end{tikzpicture}
 }

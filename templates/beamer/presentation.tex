@@ -2,14 +2,15 @@
 \usepackage{ftsrgpresentation}
 
 \usepackage[english]{babel}
+\usepackage{xstring} % you probably dont need this
+\newcommand{\extractFontName}[1]{%
+  \StrBetween{#1}{[}{]}
+}
 
 \title{Title of the Presentation}
 \subtitle{Venue'YY}
 \author{Előadó Elemér, Társszerző Tamás}
 \supervisor{Supervisor: Konzulens Károly}
-\university{Budapest University of Technology and Economics}
-\department{Department of Measurement and Information Systems}
-\researchgroup{ftsrg Research Group}
 
 \begin{document}
 	{
@@ -30,9 +31,11 @@
       \item But please don't go any lower
       \end{itemize}
     \end{itemize}
-  \item You must compile this presenation with Lua\LaTeX\\
-    and have \emph{Calibri}, \emph{Cambria} and \emph{Cambria Math}
-    installed on you computer as OpenType fonts
+  \item You must have \emph{opensans} installed. The current font is: 
+  \begin{itemize}
+      \item \extractFontName{\expandafter\meaning\the\font}
+  \end{itemize}
+
   \item The attached \texttt{.latexmkrc} helps you
     \begin{itemize}
     \item Just run \texttt{latexmk presentation}
@@ -42,6 +45,8 @@
   \callout<3>[text width=5cm]{bubblehere}{Use \texttt{\textbackslash
       tikzmark} and \texttt{\textbackslash callout} to place ``speech
     bubbles''}
+    
+  \accentcallout<3>[text width=5cm]{bubblehere}(150:0.5cm){Use \texttt{\textbackslash accentcallout} to place accent-colored ``speech bubbles''}[AccentPurple]
 \end{frame}
 
 \begin{frame}[c]{Figures}
@@ -81,7 +86,7 @@
     (figures) |- node[at end,above,anchor=south east,xshift=-0.6cm]
     {You can also add} (anim);
   \end{tikzpicture}
-  \callout<2->[xshift=-1cm]{draw.east}(180:1.5cm){%
+  \callout<2->[xshift=-1cm]{draw.east}(150:1.5cm){%
     You can place callouts over figures, too}
 \end{frame}
 
@@ -120,8 +125,7 @@
       \end{alertblock}
 
       \begin{exampleblock}{Example block}
-        This is an example of an example block.\\
-        A meta-exaple block.
+        This is an example of an example block. A meta-example block.
       \end{exampleblock}
     \end{column}
   \end{columns}
@@ -131,6 +135,89 @@
   \begin{block}{}
     A block which spans two columns and has no title.
   \end{block}
+  \vspace{1ex}
+  \begin{coloredblock}{Custom colored blocks can be also used}{bg=ftsrg@AccentOrange,fg=white}{bg=ftsrg@AccentOrange!25,fg=ftsrg@DarkGray}
+    Use \texttt{ftsrg@Accent<Color>} for titles, and \texttt{ftsrg@Accent<Color>!25} for bodies.
+  \end{coloredblock}
+\end{frame}
+
+\newcounter{rows}
+\newcounter{cols}[rows]
+
+\begin{frame}[c]{Fonts (series vs. shape)}
+    \centering
+    
+    \setcounter{rows}{0}
+    \setcounter{cols}{0}
+
+    \def\shapes{n, it, sl}
+    \def\series{l, lc, m, sb, b, bx, bc, eb}
+    
+    \begin{tikzpicture}[scale=0.8,x=5cm,y=0.8cm,every node/.style={transform shape}]
+                \tikzset{vertex/.style = {shape=rectangle,text width=,minimum height=0.7cm,minimum width=4.75cm}}
+                
+                \foreach \fshape in \shapes
+                {
+                   \node[vertex,fill=white,draw=white] (c) at  (\thecols, 1) {\scriptsize \fshape};
+                   \stepcounter{cols}
+                }
+                \setcounter{cols}{0}
+                
+                \foreach \fseries in \series
+                {
+                   \node[vertex,fill=white,draw=white,minimum width=0] (c) at  (-0.6 , -\therows) {\scriptsize \fseries};
+                
+                   \foreach \fshape in \shapes {
+
+                        \node[vertex,fill=white,draw=black] (c) at  (\thecols, -\therows) {\footnotesize\fontseries{\fseries}\fontshape{\fshape}\selectfont{\extractFontName{\expandafter\meaning\the\font}}};
+                        \stepcounter{cols}
+                    
+                    }
+                    \stepcounter{rows}
+                }
+        
+    \end{tikzpicture}
+    \begin{alertblock}{}
+    \centering
+        If not all fonts match the regex \texttt{OpenSans-.*\textbackslash.ttf}, install the missing fonts!
+    \end{alertblock}
+    
+\end{frame}
+
+\begin{frame}[c]{Colors}
+    \centering
+    
+    \setcounter{rows}{0}
+    \setcounter{cols}{0}
+
+    \def\colors{ftsrg@Gray, ftsrg@DarkGray, ftsrg@AccentBlue, ftsrg@AccentRed, ftsrg@AccentPurple, ftsrg@AccentOrange, ftsrg@AccentLightBlue, ftsrg@AccentGreen}
+    \def\shades{!20!black, !40!black, !60!black, !80!black, !100, !80, !60, !40, !20}
+    
+    \begin{tikzpicture}[scale=0.8,x=1.5cm,y=0.8cm,every node/.style={transform shape}]
+                \tikzset{vertex/.style = {shape=rectangle,text width=,minimum height=0.5cm,minimum width=0.5cm}}
+                
+                \foreach \cshade in \shades
+                {
+                   \node[vertex,fill=white,draw=white] (c) at  (\thecols, 1) {\scriptsize \cshade};
+                   \stepcounter{cols}
+                }
+                \setcounter{cols}{0}
+                
+                \foreach \ftsrgcolor in \colors
+                {
+                   \node[vertex,fill=white,draw=white] (c) at  (-1.35 , -\therows) {\scriptsize \ftsrgcolor};
+                
+                   \foreach \shade in \shades {
+
+                        \node[vertex,fill=\ftsrgcolor\shade,draw=black] (c) at  (\thecols, -\therows) {};
+                        \stepcounter{cols}
+                    
+                    }
+                    \stepcounter{rows}
+                }
+        
+    \end{tikzpicture}
+    
 \end{frame}
 
 \begin{frame}[c]{}
