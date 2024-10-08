@@ -1,0 +1,68 @@
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{bold-extra}
+\usepackage{multicol}
+\usepackage[numbers]{natbib}
+\usepackage[strings]{underscore}
+
+\usepackage{enumitem}
+\setlist{nolistsep}
+
+\RequirePackage{xspace}
+\RequirePackage{relsize} % for \smaller
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{qrcode}
+
+\RequirePackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{calc}
+\usetikzlibrary{chains}
+\usetikzlibrary{fadings}
+\usetikzlibrary{fit}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{shapes.callouts}
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+
+\definecolor{ftsrg@White}{RGB}{255,255,255}
+\definecolor{ftsrg@Black}{RGB}{0,0,0}
+\definecolor{ftsrg@Gray}{RGB}{167,168,167}
+\definecolor{ftsrg@DarkGray}{RGB}{47,45,46}
+\definecolor{ftsrg@AccentBlue}{RGB}{20,70,160}
+\definecolor{ftsrg@AccentRed}{RGB}{150,0,24}
+\definecolor{ftsrg@AccentPurple}{RGB}{82,43,71}
+\definecolor{ftsrg@AccentOrange}{RGB}{251,139,36}
+\definecolor{ftsrg@AccentLightBlue}{RGB}{68,114,196}
+\definecolor{ftsrg@AccentGreen}{RGB}{112,173,71}
+
+% These are for beamer-compatibility (best-effort)
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+\newenvironment{block}[1]{%
+\tcolorbox[%
+boxsep=1pt,left=0pt,right=0pt,top=3pt,bottom=3pt,%
+colframe=ftsrg@AccentBlue,
+boxrule=0pt,
+bottomtitle=1pt,toptitle=1pt,
+enhanced jigsaw,
+noparskip,breakable,%
+colback=ftsrg@DarkGray!10,%
+title=#1]}%
+{\endtcolorbox}
+
+\newenvironment{columns}[1][]
+        {\setkeys{columns@col}{#1}
+         \noindent\begin{minipage}{\textwidth}}
+        {\end{minipage}\vspace{.5cm}}
+
+\newenvironment{column}[1]
+        {\begin{minipage}[t]{#1}}
+        {\end{minipage}}

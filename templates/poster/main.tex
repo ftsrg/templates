@@ -1,0 +1,144 @@
+\documentclass[a0paper, portrait]{baposter}
+
+\usepackage{setspace}
+\usepackage{multicol}
+\usepackage[overlay]{textpos}
+\setlength{\TPHorizModule}{10mm}
+\setlength{\TPVertModule}{\TPHorizModule}
+
+\input{preamble}
+\input{content/helper} % remove this if not weak memory-related
+
+% we define our own URL-format, because
+% baposter (especially with geometry package) does not like hyperref
+\newcommand{\additionalSpace}{\vspace{1mm}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1pt,text width=] (char) {#1};}}
+\newcommand{\SM}{\small}
+
+\newcommand\sfactor{0.75}
+
+\begin{document}
+
+\begin{poster}{
+  grid=false,
+  colspacing=1em,
+  eyecatcher=true,
+  headerborder=closed,
+  headerheight=12em,
+  headerfont=\Large\bf\sc, %Sans Serif
+%  textfont=\large,
+  linewidth=2pt,
+  background=plain,
+  bgColorOne=white,
+  columns=8,
+  borderColor=ftsrg@AccentBlue!25!black,
+  headerColorOne=ftsrg@AccentBlue!75!black,
+  headerColorTwo=ftsrg@AccentPurple,
+  headerFontColor=white,
+  headershape=smallrounded,
+  boxColorOne=ftsrg@AccentRed,
+  textborder=bars,
+}
+{
+
+      \includegraphics[height=3em]{logos/logo_FTSRG.pdf}
+      \hspace{4ex}
+      \includegraphics[height=3em]{logos/logo_MIT.pdf}  
+
+}
+{
+  \\[0.3em]
+  \textbf{\textsf{\color{ftsrg@AccentBlue}{
+    \textsc{\fontsize{25}{50} \selectfont Software Verification Witnesses for Weak Memory}
+  }}}
+  \\  
+  {\small
+  Levente~Bajczi
+  }
+}
+{}
+{
+  \includegraphics[height=3em]{logos/logo_BME.pdf}
+}
+
+
+\headerbox{Memory Models Overview}{name=overview,column=3,span=5}{
+    \vspace{1.5mm}
+    \input{content/memorymodels}
+    \vspace{-3mm}
+    \additionalSpace
+}
+
+\headerbox{example}{name=example,column=0,span=3}{
+    \vspace{1.2mm}
+    \input{content/program-with-cex}
+    \vspace{-5mm}
+    \additionalSpace
+}
+
+\headerbox{Tools for Weak Memory}{name=violation,column=0,span=4,below=overview}{
+    \vspace{1.2mm}
+    \input{content/tools}
+    \vspace{-5mm}
+    \additionalSpace
+}
+
+\headerbox{Violation Witness Example}{name=violationex,column=4,span=4,below=overview}{
+    \vspace{1.2mm}
+    \input{content/violation-witness}
+    \vspace{-5mm}
+    \additionalSpace
+}
+
+\headerbox{Correctness Witness Example}{name=safetyex,column=0,span=4,below=violationex}{
+    \vspace{1.2mm}
+    \input{content/safety-witness}
+    \vspace{-5mm}
+    \additionalSpace
+}
+
+\headerbox{Mapping Verdicts to Witnesses}{name=safety,column=4,span=4,below=violationex}{
+    \vspace{1.2mm}
+    \input{content/mapping}
+    \additionalSpace
+}
+
+\headerbox{Future Plans}{name=ourtools,column=4,span=4,below=safety}{
+    \vspace{1.2mm}
+    \input{content/future}
+    \additionalSpace
+}
+
+\headerbox{References}{name=references,column=0,span=7,below=safetyex}{
+  \vspace*{-1.8mm}
+  \begin{scriptsize}
+  \begin{multicols}{2}
+    \setlength{\bibsep}{0em}
+    \renewcommand\refname{\vspace{-6.3mm}}
+    \bibliographystyle{ftsrg-splncs04}
+    \bibliography{poster}
+  \end{multicols}
+  \end{scriptsize}
+}
+
+\headerbox{Report}{name=qr,column=7,span=1,below=safetyex}{
+  \centering
+  \includegraphics[width=\textwidth]{content/qr.pdf}
+  \vspace*{-1cm}
+}
+
+\headerbox{}{name=ack,below=qr,boxheaderheight=0em,headerfont=\normalfont\bfseries\large,column=0,span=8,headerborder=none,textborder=none,headerColorOne=white,headerColorTwo=white,boxColorOne=white}{
+\begin{spacing}{0.5}
+{\smaller\smaller
+This research was partially funded by the \'UNKP-24-3 New National Excellence Program of the Ministry of Innovation and Technology, from the National Research, Development and Innovation Fund of Hungary (grant no. \'UNKP-24-3-BME-213). 
+
+The Doctoral Excellence Fellowship Programme (DCEP) is funded by the National Research Development and Innovation Fund of the Ministry of Culture and Innovation and the Budapest University of Technology and Economics, under a grant agreement with the National Research, Development and Innovation Office.
+
+This project was funded in part by the Deutsche Forschungsgemeinschaft (DFG) --- \href{http://gepris.dfg.de/gepris/projekt/378803395}{378803395} (ConVeY)
+}
+\end{spacing}
+}
+
+\end{poster}
+
+\end{document}

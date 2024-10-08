@@ -1,0 +1,21 @@
+\newcommand{\multiline}[1]{\begin{tabular}{c}#1\end{tabular}}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ccccc}
+invariant type & value & line & column \\\midrule
+location & $\backslash{}at(\x, 0) = 0$ & 0 & \emph{middle} \\
+location & $\backslash{}at(\y, 0) = 0$ & 0 & \emph{end} \\
+         % & start & 1, 2 & 1 & 0 \\
+% \textbf{Thread 1} & & &  &  \\\midrule
+location & $\backslash{}at(\x, 1) = 1$ & 1 \emph{(left)} & \emph{end} \\
+location & $\backslash{}at(\y, 1) = 1$ & 2 \emph{(left)} & \emph{end}\vspace{0.5em}\\
+% \textbf{Thread 2} & & &  &  \\\midrule\vspace{0.5em}
+location & \multiline{$\exists a : a \in \{0, 1\} $\\$i = \backslash{}at(\x, a)$}& 1 \emph{(right)} & \emph{end}\vspace{0.5em}\\
+location & \multiline{$\exists a,b : a,b \in \{0, 1\} $\\$j = \backslash{}at(\y, a)$\\$i = \backslash{}at(\x, b)$\\$b = 1 \implies a = 1$} & 2 \emph{(right)} & \emph{end}\vspace{0.5em}\\
+location & $\neg (i = 1 \land j = 0)$  & 2 \emph{(right)} & \emph{end} \\
+\end{tabular}
+\captionsetup{labelformat=empty}
+\caption{A correctness witness, encoding a proof over SC}
+\label{table:proof}
+\end{table}

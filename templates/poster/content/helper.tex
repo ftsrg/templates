@@ -1,0 +1,173 @@
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+
+\usepackage{amsmath}
+\usepackage{orcidlink}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,decorations,patterns,calc}
+\usepackage{booktabs}
+
+
+\usepackage{array}
+\usepackage{collect}
+
+\newcommand{\po}{\emph{po}}
+\newcommand{\ppo}{{\color{gray}\emph{ppo}}}
+\newcommand{\rf}{{\color{red}\emph{rf}}}
+\newcommand{\fr}{{\color{cyan}\emph{fr}}}
+\newcommand{\co}{{\color{orange}\emph{co}}}
+\newcommand{\hb}{{\bfseries\emph{hb}}}
+
+
+\newcounter{litmus}[section]
+
+\newcommand{\litmusautorefname}{Program}
+
+\newenvironment{litmus}[4]
+{%
+  \def\closing{#4}%
+  \renewcommand\thelitmus{#2}%
+  \refstepcounter{litmus}%
+  \label{litmus:#2}%
+  \begin{equation*}%
+  \begin{gathered}%
+  #3\\%
+  \ifcase#1%
+    \PackageError{litmus}{Invalid parameter value for array}{%
+      The parameter value must be between 1 and 3.%
+    }%
+  % case 1
+  \or
+    \PackageError{litmus}{Invalid parameter value for array}{%
+      The parameter value must be between 1 and 3.%
+    }%
+  % case 2
+  \or
+    \begin{array}{
+      >{\displaystyle}l   % right aligned
+      @{\hspace{1em}}     % spacing
+      |                   % vertical rule
+      @{\hspace{1em}}     % spacing
+      >{\displaystyle}l   % left aligned
+    }%
+  % case 3
+  \or
+    \begin{array}{
+      >{\displaystyle}r   % right aligned
+      @{\hspace{1em}}     % spacing
+      |                   % vertical rule
+      @{\hspace{1em}}     % spacing
+      >{\displaystyle}l   % left aligned
+      @{\hspace{1em}}     % spacing
+      |                   % vertical rule
+      @{\hspace{1em}}     % spacing
+      >{\displaystyle}l   % left aligned
+    }%
+  % case 4
+  \or
+    \begin{array}{
+      >{\displaystyle}r   % right aligned
+      @{\hspace{1em}}     % spacing
+      |                   % vertical rule
+      @{\hspace{1em}}     % spacing
+      >{\displaystyle}l   % left aligned
+      @{\hspace{1em}}     % spacing
+      |                   % vertical rule
+      @{\hspace{1em}}     % spacing
+      >{\displaystyle}l   % left aligned
+      @{\hspace{1em}}     % spacing
+      |                   % vertical rule
+      @{\hspace{1em}}     % spacing
+      >{\displaystyle}l   % left aligned
+    }%
+  % default case
+  \else
+    \PackageError{litmus}{Invalid parameter value for array}{%
+      The parameter value must be between 1 and 3.%
+    }%
+  \fi%
+}{%
+  \end{array}%
+  \\\closing{}\end{gathered}%
+  \end{equation*}%
+}
+ 
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\z}{\mathbf{y}}
+\newcommand{\w}{\mathbf{y}}
+
+\definecolor{po_color}{HTML}{000000}
+\definecolor{ppo_color}{HTML}{2b83ba}
+\definecolor{rf_color}{HTML}{d7191c}
+\definecolor{fr_color}{HTML}{fdae61}
+\definecolor{co_color}{HTML}{fdae61}
+\definecolor{ext_color}{HTML}{000000}
+
+\newcounter{threadnum}
+\newcounter{threaddepth}
+\newcounter{legendcnt}
+\definecollection{initialwrites}
+\definecollection{edges}
+\definecollection{legend}
+
+
+\newenvironment{execgraph}[1][0.75]
+{%
+\setcounter{threadnum}{0}
+\setcounter{legendcnt}{0} \begin{collect}{legend}{}{} \end{collect}
+\begin{tikzpicture}[scale=#1, x=1.5cm, y=1.25cm, every node/.style={transform shape}]
+\tikzset{vertex/.style = {shape=ellipse,minimum size=1.5em,color=black}}
+\tikzset{po_edge/.style = {->,> = latex',color=po_color}}
+\tikzset{co_edge/.style = {->,> = latex',color=co_color}}
+\tikzset{ppo_edge/.style = {->,> = latex',color=ppo_color}}
+\tikzset{rf_edge/.style = {->,> = latex',color=rf_color}}
+\tikzset{fr_edge/.style = {->,> = latex',color=fr_color}}
+\tikzset{ext_edge/.style = {-,> = latex',color=ext_color}}
+\tikzset{
+    cross/.style={
+      decoration={
+        markings,
+        mark=at position 0.5 with {
+          \draw[-,solid] (-2pt,-2pt) -- (2pt,2pt);
+          \draw[-,solid] (-2pt,2pt) -- (2pt,-2pt);
+        }
+      },
+      postaction={decorate}
+    }
+  }
+}%
+{
+\node[vertex] (init) at  (${\thethreadnum-1}*(0.5,0)$){\includecollection{initialwrites}};
+\node[minimum height=0, minimum width=0, inner sep=0] (legend) at  (${\thethreadnum-1}*(0.5,0)$){%
+\begin{tikzpicture}[scale=1, x=1cm, y=1cm, every node/.style={transform shape}]
+      \node[] at (0,-1.5) {};
+      \includecollection{legend}
+    \end{tikzpicture}};
+\includecollection{edges}
+\end{tikzpicture}
+}
+
+\newenvironment{thread}
+{%
+\setcounter{threaddepth}{0}
+}%
+{\stepcounter{threadnum}}
+
+
+\newcommand{\IW}[2]{\begin{collect}{initialwrites}{}{}$#1 := #2$\end{collect}}
+
+\newcommand{\W}[3]{\stepcounter{threaddepth}\node[vertex] (#1) at  (\thethreadnum,-\thethreaddepth) {$#2 := #3$};}
+\newcommand{\R}[3]{\stepcounter{threaddepth}\node[vertex] (#1) at  (\thethreadnum,-\thethreaddepth) {$#3 := #2$};}
+
+\newcommand{\edge}[4]{\begin{collect}{edges}{}{}\draw[#1_edge] (#2) edge #4 (#3);\end{collect}}
+\newcommand{\edgeL}[5]{\begin{collect}{edges}{}{}\draw[#1_edge] (#2) edge [bend left=#5] #4 (#3);\end{collect}}
+\newcommand{\edgeR}[5]{\begin{collect}{edges}{}{}\draw[#1_edge] (#2) edge [bend right=#5] #4 (#3);\end{collect}}
+
+\newcommand{\legend}[1]{\begin{collect}{legend}{}{}\node[] (\thelegendcnt) at (\thelegendcnt,0) {};\draw[#1_edge] (\thelegendcnt) edge node[above=0.25cm] {\emph{#1}} ($\thelegendcnt*(1,0) + (0.75,0)$);\stepcounter{legendcnt}\end{collect}}

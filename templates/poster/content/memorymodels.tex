@@ -1,0 +1,56 @@
+\begin{figure}[H]
+\centering
+\begin{subfigure}[c]{0.45\columnwidth}\centering
+    \vspace{-0.85cm}
+    \begin{litmus}{2}{2w2r}{\x := 0}{}
+        \x := 1 & a := \x\\
+        \x := 2 & b := \x\\
+        \vspace{-2em}
+    \end{litmus}
+    
+    \begin{tikzpicture}[scale=1,every node/.style={transform shape},shift=({0, 1})]
+        \tikzset{po_edge/.style = {->,> = latex',color=black}}
+        \tikzset{hb_edge/.style = {->,> = latex',color=black,dashed}}
+        \tikzset{ppo_edge/.style = {->,> = latex',color=gray}}
+        \tikzset{rf_edge/.style = {->,> = latex',color=red}}
+        \tikzset{fr_edge/.style = {->,> = latex',color=cyan}}
+        \tikzset{co_edge/.style = {->,> = latex',color=orange}}
+    
+        \draw[po_edge,-] (0,0) edge [->] node[above=0.25cm]{po} node[below=0.25,scale=0.75,align=center]{Instruction\\order} (1,0); 
+        \draw[co_edge,-] (2,0) edge [->] node[above=0.25cm]{co} node[below=0.25,scale=0.75,align=center]{Memory update\\order (W -> W)} (3,0); 
+        \draw[rf_edge,-] (4,0) edge [->] node[above=0.25cm]{rf} node[below=0.25cm,scale=0.75,align=center]{Dataflow\\(W -> R)} (5,0); 
+    \end{tikzpicture}    
+    
+    \textcolor{gray}{\smaller\\$\forall r^\x \exists w^\x: w^\x \mathcolor{red}{\xrightarrow{\mathit{rf}}} r^\x$\\$\forall w_1^\x, w_2^\x: w_1^\x \mathcolor{orange}{\xrightarrow{\mathit{co}}} w_2^\x \lor w_2^\x \mathcolor{orange}{\xrightarrow{\mathit{co}}} w_1^\x$\\$\dots$}
+    
+\end{subfigure}%
+\hfill
+\begin{subfigure}[c]{0.55\columnwidth}\centering
+    \vspace{-0.5cm}
+    \begin{tikzpicture}[remember picture,scale=0.75,every node/.style={transform shape}]
+        \tikzset{vertex/.style = {shape=ellipse,minimum size=1.5em,color=gray}}
+        \tikzset{po_edge/.style = {->,> = latex',color=black}}
+        \tikzset{hb_edge/.style = {->,> = latex',color=black,dashed}}
+        \tikzset{ppo_edge/.style = {->,> = latex',color=gray}}
+        \tikzset{rf_edge/.style = {->,> = latex',color=red}}
+        \tikzset{fr_edge/.style = {->,> = latex',color=cyan}}
+        \tikzset{co_edge/.style = {->,> = latex',color=orange}}
+
+        \node[vertex] (ex) at (5, 0.25) {\emph{Example}};
+
+        \node[vertex] (p0n0) at  (0,0) {?}; \node[vertex] (p0n1) at (2,0) {?}; \draw[po_edge] (p0n0) edge node[above=0.15cm]{po} (p0n1); 
+        \node[vertex] (p1n0) at  (0,-1) {W}; \node[vertex] (p1n1) at (2,-1) {W}; \draw[co_edge] (p1n0) edge node[above=0.15cm]{co} (p1n1); 
+        \node[vertex] (p2n0) at  (0,-2) {W}; \node[vertex] (p2n1) at (2,-2) {R}; \draw[rf_edge] (p2n0) edge node[above=0.15cm]{rf} (p2n1); 
+        \node[] (label) at (3,-1) {$\rightarrow$};
+        \node[vertex] (p0n2) at  (4,-1) {?}; \node[vertex] (p0n3) at (6,-1) {?}; \draw[hb_edge] (p0n2) edge node[above=0.15cm]{hb} (p0n3); 
+        \node[vertex] (p3n0) at  (0,-3.5) {W}; \node[vertex] (p3n1) at (2,-3.5) {R}; \node[vertex] (p3n2) at (1,-4.5) {W}; \draw[rf_edge] (p3n0) edge node[above=0.15cm]{rf} (p3n1); \draw[co_edge] (p3n0) edge node[left,yshift=-5]{co} (p3n2); 
+        \node[] (label) at (3,-4) {$\rightarrow$};
+        \node[vertex] (p3n3) at  (4,-3.5) {W}; \node[vertex] (p3n4) at (6,-3.5) {R}; \node[vertex] (p3n5) at (5,-4.5) {W}; \draw[hb_edge] (p3n4) edge node[above,xshift=-5]{hb} (p3n5); 
+    \end{tikzpicture}
+
+    \begin{block}{}\smaller\centering
+    Find \co{} and \rf{} for a given \po{} such that \hb{} is acyclic. 
+    \end{block}
+
+\end{subfigure}
+\end{figure}

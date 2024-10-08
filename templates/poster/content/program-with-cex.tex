@@ -1,0 +1,54 @@
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.5\columnwidth}
+        \centering
+            \begin{litmus}{2}{2w2r}{\x := 0, \y := 0}{\neg (i = 1 \land j = 0)}
+                \x := 1 & i := \y\\
+                \y := 1 & j := \x
+            \end{litmus}
+            \captionsetup{labelformat=empty}
+            \caption{Program with property}
+            \label{fig:example_program}
+\end{subfigure}%
+\begin{subfigure}{0.5\columnwidth}
+            \centering
+            \begin{execgraph}{1.25}
+                \IW{\x}{0}
+                \IW{\y}{0}
+                
+                \begin{thread}
+                    \W{a1}{\x}{1}
+                    \W{a2}{\y}{1}
+                \end{thread}
+                \begin{thread}
+                    \R{b1}{\y}{i}
+                    \R{b2}{\x}{j}
+                \end{thread}
+                
+                \edge{po}{init}{a1}{}
+                \edge{po}{init}{b1}{}
+                \edge{po}{a1}{a2}{}
+                \edge{po}{b1}{b2}{}
+                \edgeL{rf}{init}{b2}{}{55}
+                \edge{rf}{a2}{b1}{}
+                
+                \edgeR{co}{init}{a1}{}{20}
+                \edgeR{co}{init}{a2}{}{55}
+
+                \legend{po}
+                \legend{rf}
+                \legend{co}
+                
+            \end{execgraph}
+            \captionsetup{labelformat=empty}
+            \caption{CEx. candidate}
+            \label{fig:example_candidate}
+
+            
+    \vspace{0.15cm}
+            
+\end{subfigure}
+\captionsetup{labelformat=empty}
+\caption{\textbf{Bold} variables are global, \emph{italicized} variables are local. The program is safe under SC and TSO but not PSO.}
+\label{fig:example}
+\end{figure}

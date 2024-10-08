@@ -1,0 +1,63 @@
+{
+\vspace{1.4cm}
+\centering
+\smaller
+\begin{columns}%
+    \begin{column}{0.3\textwidth}%
+        \centering
+        
+        \begin{block}{ \centering \bfseries
+            Exhaustive Enumeration}
+
+            Generate execution candidates, and check their consistency
+
+        \end{block}
+
+        \textbf{Herd7~\cite{herd}}\\{\smaller{(memory model simulator)}}
+        
+        Litmus tests
+        CAT memory model         
+        
+    \end{column}%
+    \hfill%
+    \begin{column}{0.33\textwidth}%
+        \centering
+
+        \begin{block}{ \centering \bfseries
+            Stateless Model Checking}
+            
+            Generate increasingly larger, always consistent executions (traces)
+
+        \end{block}
+
+        \textbf{GenMC~\cite{genmc}}, \textbf{Nidhugg~\cite{nidhugg}}, $\dots$\\{\smaller{}}
+
+        
+        (Subset of) C11
+        
+        Custom library
+
+    \end{column}%
+    \hfill%
+    \begin{column}{0.3\textwidth}%
+        \centering
+
+        \begin{block}{ \centering \bfseries
+            Bounded Model Checking}
+            
+            Encode constraints of the memory model in the SMT query
+        
+        \end{block}
+
+        \textbf{Dartagnan~\cite{dartagnan}}
+
+        (SV-COMP flavored) C
+        
+        Subset of CAT 
+        
+
+    \end{column}%
+\end{columns}
+
+\vspace{1.45cm}
+}

@@ -1,0 +1,19 @@
+\begin{table}[H]
+\centering
+\begin{tabular}{ccccc}
+\textbf{Thread 0} & waypoint type & value & line & column \\\midrule
+         & assume & $\backslash{}at(\x, 0) = 0$ & 0 & \emph{middle} \\
+         & assume & $\backslash{}at(\y, 0) = 0$ & 0 & \emph{end} \\
+         & thread\_start & 1, 2 & 1 & 0 \\
+\textbf{Thread 1} & & &  &  \\\midrule
+         & assume & $\backslash{}at(\x, 1) = 1$ & 1 & \emph{end} \\
+         & assume & $\backslash{}at(\y, 1) = 1$ & 2 & \emph{end} \\
+\textbf{Thread 2} & & &  &  \\\midrule
+         & assume & $i = \backslash{}at(\x, 1)$ & 1 & \emph{end} \\
+         & assume & $j = \backslash{}at(\y, 1)$ & 2 & \emph{end} \\
+         & target & - & 2 & \emph{end} \\
+\end{tabular}
+\captionsetup{labelformat=empty}
+\caption{A violation witness, encoding a violation under PSO}
+\label{table:cex}
+\end{table}
