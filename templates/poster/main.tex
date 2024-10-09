@@ -44,7 +44,6 @@
       \includegraphics[height=3em]{logos/logo_FTSRG.pdf}
       \hspace{4ex}
       \includegraphics[height=3em]{logos/logo_MIT.pdf}  
-
 }
 {
   \\[0.3em]
@@ -55,62 +54,67 @@
   {\small
   Levente~Bajczi
   }
+  \\  
+  {\small
+  \textsc{https://leventebajczi.com}
+  }
 }
 {}
 {
   \includegraphics[height=3em]{logos/logo_BME.pdf}
 }
 
+% heights should add up to (without footer) 0.775. 
 
-\headerbox{Memory Models Overview}{name=overview,column=3,span=5}{
+\headerbox{Memory Models Overview}{name=overview,column=3,span=5,height=0.225}{
     \vspace{1.5mm}
     \input{content/memorymodels}
     \vspace{-3mm}
     \additionalSpace
 }
 
-\headerbox{example}{name=example,column=0,span=3}{
+\headerbox{example}{name=example,column=0,span=3,height=0.225}{
     \vspace{1.2mm}
     \input{content/program-with-cex}
     \vspace{-5mm}
     \additionalSpace
 }
 
-\headerbox{Tools for Weak Memory}{name=violation,column=0,span=4,below=overview}{
+\headerbox{Tools for Weak Memory}{name=violation,column=0,span=4,below=overview,height=0.25}{
     \vspace{1.2mm}
     \input{content/tools}
     \vspace{-5mm}
     \additionalSpace
 }
 
-\headerbox{Violation Witness Example}{name=violationex,column=4,span=4,below=overview}{
+\headerbox{Violation Witness Example}{name=violationex,column=4,span=4,below=overview,height=0.25}{
     \vspace{1.2mm}
     \input{content/violation-witness}
     \vspace{-5mm}
     \additionalSpace
 }
 
-\headerbox{Correctness Witness Example}{name=safetyex,column=0,span=4,below=violationex}{
+\headerbox{Correctness Witness Example}{name=safetyex,column=0,span=4,below=violationex,height=0.275}{
     \vspace{1.2mm}
     \input{content/safety-witness}
     \vspace{-5mm}
     \additionalSpace
 }
 
-\headerbox{Mapping Verdicts to Witnesses}{name=safety,column=4,span=4,below=violationex}{
+\headerbox{Mapping Verdicts to Witnesses}{name=safety,column=4,span=4,below=violationex,height=0.125}{
     \vspace{1.2mm}
     \input{content/mapping}
     \additionalSpace
 }
 
-\headerbox{Future Plans}{name=ourtools,column=4,span=4,below=safety}{
+\headerbox{Future Plans}{name=ourtools,column=4,span=4,below=safety,height=0.138}{
     \vspace{1.2mm}
     \input{content/future}
     \additionalSpace
 }
 
-\headerbox{References}{name=references,column=0,span=7,below=safetyex}{
-  \vspace*{-1.8mm}
+\headerbox{References}{name=references,column=0,span=7,below=safetyex,height=0.125}{
+  % \vspace*{-1.8mm}
   \begin{scriptsize}
   \begin{multicols}{2}
     \setlength{\bibsep}{0em}
@@ -121,13 +125,13 @@
   \end{scriptsize}
 }
 
-\headerbox{Report}{name=qr,column=7,span=1,below=safetyex}{
+\headerbox{Report}{name=qr,column=7,span=1,below=safetyex,height=0.125}{
   \centering
   \includegraphics[width=\textwidth]{content/qr.pdf}
   \vspace*{-1cm}
 }
 
-\headerbox{}{name=ack,below=qr,boxheaderheight=0em,headerfont=\normalfont\bfseries\large,column=0,span=8,headerborder=none,textborder=none,headerColorOne=white,headerColorTwo=white,boxColorOne=white}{
+\headerbox{}{name=ack,below=qr,boxheaderheight=0em,headerfont=\normalfont\bfseries\large,column=0,span=8,headerborder=none,textborder=none,headerColorOne=white,headerColorTwo=white,boxColorOne=white,height=0.05}{
 \begin{spacing}{0.5}
 {\smaller\smaller
 This research was partially funded by the \'UNKP-24-3 New National Excellence Program of the Ministry of Innovation and Technology, from the National Research, Development and Innovation Fund of Hungary (grant no. \'UNKP-24-3-BME-213). 
@@ -136,6 +140,8 @@ The Doctoral Excellence Fellowship Programme (DCEP) is funded by the National Re
 }
 \end{spacing}
 }
+
+\headerbox{Critical Systems Research Group $\cdot$ \textsc{https://ftsrg.mit.bme.hu} $\cdot$ \textsc{egyeb-url}}{name=footer,below=ack,headershape=rectangle,headerfont=\normalfont\bfseries\large,column=0,span=8,headerborder=none,textborder=none,headerColorOne=gray!50,headerColorTwo=gray!50!black,boxColorOne=white}{}
 
 \end{poster}
 

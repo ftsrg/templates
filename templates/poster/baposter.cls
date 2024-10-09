@@ -680,7 +680,7 @@
 
 % These functions take one argument: the header text
 \newcommand{\baposter@box@headerdrawtext@rectangle}[1]{
-  \path (\baposter@box@name nw) +(0em,-0.5\baposter@box@@boxheaderheight) node[anchor=west,inner sep=0.4em] {#1};%
+  \path (\baposter@box@name nw) +(\boxwidth,-0.5\baposter@box@@boxheaderheight) node[anchor=east,inner sep=0.4em] {#1};%
 }
 \newcommand{\baposter@box@headerdrawtext@smallrounded}[1]{
   \path (\baposter@box@name nw) +(0.5\boxwidth,-0.5\baposter@box@@boxheaderheight) node[anchor=center] {#1};%
